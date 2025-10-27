@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongo:
+      uri: mongo://localhost:27017/cadastro_generico

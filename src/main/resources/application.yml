@@ -1,4 +1,9 @@
 spring:
   data:
     mongo:
-      uri: mongo://localhost:27017/cadastro_generico
+      uri: mongodb://localhost:27017/cadastro_generico
+
+
+  messages:
+    basename: messages
+    encoding: UTF-8

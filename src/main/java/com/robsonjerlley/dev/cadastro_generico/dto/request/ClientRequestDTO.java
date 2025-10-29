@@ -25,10 +25,10 @@ public class ClientRequestDTO {
     @CPF
     private String cpf;
 
-    @NotBlank(message = "{NotBlank}")
+    @NotBlank()
     @Size(min =7, max= 9, message = "O campo deve ser preenchido apenas com os digitos" )
     private String rg;
-    @NotNull(message = "{NotNull}")
+    @NotNull()
     @Past(message = "Data inválida")
     private OffsetDateTime dateBirth;
 

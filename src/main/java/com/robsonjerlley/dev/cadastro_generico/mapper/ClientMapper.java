@@ -6,7 +6,7 @@ import com.robsonjerlley.dev.cadastro_generico.model.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {AddressMapper.class, ClientMapper.class})
 public interface ClientMapper {
 
     Client toEntity(ClientRequestDTO dto);

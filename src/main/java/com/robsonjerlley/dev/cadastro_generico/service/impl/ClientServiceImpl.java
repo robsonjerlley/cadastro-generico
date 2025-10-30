@@ -7,10 +7,16 @@ import com.robsonjerlley.dev.cadastro_generico.mapper.ClientMapper;
 import com.robsonjerlley.dev.cadastro_generico.model.Client;
 import com.robsonjerlley.dev.cadastro_generico.repository.ClientRepository;
 import com.robsonjerlley.dev.cadastro_generico.service.ClientService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -33,12 +39,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientResponseDTO> findAll() {
-        List<Client> clients = clientRepository.findAll();
-
-        return clients.stream().map(mapper::toResponseDTO)
+    public Page<ClientResponseDTO> findAll(Pageable pageable) {
+        Page<Client> clientPage = clientRepository.findAll(pageable);
+      List<ClientResponseDTO>  clientDTO = clientPage.getContent().stream()
+                .map(mapper::toResponseDTO)
                 .toList();
+       return new PageImpl<>(clientDTO, pageable, clientPage.getTotalElements());
     }
+
 
     @Override
     public ClientResponseDTO findById(String id) {
@@ -50,17 +58,20 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientResponseDTO findByCpf(String cpf) {
-        Client cpfFromDb = clientRepository.findByCpf(cpf)
-                .orElseThrow(() -> new ResourceNotFoundException("CPF não encontrado."));
-        return mapper.toResponseDTO(cpfFromDb);
+      Optional<Client> cpfOptional = clientRepository.findByCpf(cpf);
+        Client clientFromDb = cpfOptional
+                .orElseThrow(()-> new ResourceNotFoundException("CPF não encontrado."));
+        return mapper.toResponseDTO(clientFromDb);
     }
 
-    @Override
-    public ClientResponseDTO findByNameAndDateOfBirth(String name, LocalDate dateBirth) {
 
-        Client nameAndBirthFromDb = clientRepository.findByNameAndDateOfBirth( name, dateBirth)
-                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com base nos dados fornecidos."));
-        return mapper.toResponseDTO(nameAndBirthFromDb);
+
+    @Override
+    public List<ClientResponseDTO> findByNameAndDateOfBirth(String name, LocalDate dateBirth) {
+        Optional<Client> clients = clientRepository.findByNameAndDateOfBirth(name, dateBirth);
+        return clients.stream()
+                .map(mapper::toResponseDTO)
+                .toList();
     }
 
 

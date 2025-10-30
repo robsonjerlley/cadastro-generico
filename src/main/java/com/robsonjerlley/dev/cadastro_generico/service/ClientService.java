@@ -2,6 +2,8 @@ package com.robsonjerlley.dev.cadastro_generico.service;
 
 import com.robsonjerlley.dev.cadastro_generico.dto.request.ClientRequestDTO;
 import com.robsonjerlley.dev.cadastro_generico.dto.response.ClientResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 import java.time.LocalDate;
@@ -14,13 +16,13 @@ public interface ClientService {
 
     ClientResponseDTO create(ClientRequestDTO ClientRequest);
 
-    List<ClientResponseDTO> findAll();
+    Page<ClientResponseDTO> findAll(Pageable pageable);
 
     ClientResponseDTO findById(String id);
 
     ClientResponseDTO findByCpf(String cpf);
 
-    ClientResponseDTO findByNameAndDateOfBirth(String name, LocalDate dateBirth);
+   List<ClientResponseDTO> findByNameAndDateOfBirth(String name, LocalDate dateBirth);
 
     ClientResponseDTO update(String id, ClientRequestDTO clientRequest);
 

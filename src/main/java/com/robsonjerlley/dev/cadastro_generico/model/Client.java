@@ -8,7 +8,8 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class Client {
     private String name;
     private String cpf;
     private String rg;
-    private OffsetDateTime dateBirth;
+    private LocalDate dateBirth;
 
     private Address address;
     private Contact contact;

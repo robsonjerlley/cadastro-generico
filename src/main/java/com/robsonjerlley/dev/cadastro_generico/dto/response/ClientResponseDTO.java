@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Getter
@@ -15,7 +16,7 @@ public class ClientResponseDTO {
     private String id;
     private String name;
     private String cpf;
-    private OffsetDateTime dateBirth;
+    private LocalDate dateBirth;
 
 
     private AddressResponseDTO address;
@@ -25,7 +26,7 @@ public class ClientResponseDTO {
     }
 
 
-    public ClientResponseDTO(String id, String name, String cpf, OffsetDateTime dateBirth,
+    public ClientResponseDTO(String id, String name, String cpf, LocalDate dateBirth,
                              AddressResponseDTO address, ContactResponseDTO contact) {
         this.id = id;
         this.name = name;

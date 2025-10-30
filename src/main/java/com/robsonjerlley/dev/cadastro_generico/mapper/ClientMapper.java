@@ -6,6 +6,8 @@ import com.robsonjerlley.dev.cadastro_generico.model.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import java.util.Optional;
+
 @Mapper(componentModel = "spring", uses = {AddressMapper.class, ClientMapper.class})
 public interface ClientMapper {
 

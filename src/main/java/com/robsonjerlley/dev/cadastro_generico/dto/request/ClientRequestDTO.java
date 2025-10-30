@@ -11,6 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 @Getter
 @Setter
@@ -30,12 +31,12 @@ public class ClientRequestDTO {
     private String rg;
     @NotNull()
     @Past(message = "Data inválida")
-    private OffsetDateTime dateBirth;
+    private LocalDate dateBirth;
 
     public ClientRequestDTO() {
     }
 
-    public ClientRequestDTO(String name, String cpf, String rg, OffsetDateTime dateBirth) {
+    public ClientRequestDTO(String name, String cpf, String rg, LocalDate dateBirth) {
         this.name = name;
         this.cpf = cpf;
         this.rg = rg;

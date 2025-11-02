@@ -26,7 +26,7 @@ public class ClientRequestDTO {
     private String cpf;
 
     @NotBlank()
-    @Size(min =7, max= 9, message = "O campo deve ser preenchido apenas com os digitos" )
+    @Size(min =7, max= 9, message = "O campo deve ser preenchido apenas com digitos" )
     private String rg;
     @NotNull()
     @Past(message = "Data inválida")

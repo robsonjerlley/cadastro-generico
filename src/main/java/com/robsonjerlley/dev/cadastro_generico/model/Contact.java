@@ -16,6 +16,7 @@ public class Contact {
     @EqualsAndHashCode.Include
     private String id;
     private String tell;
+    private String secondTell;
     private String email;
 
 

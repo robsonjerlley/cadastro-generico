@@ -34,6 +34,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 
+    // Para a implementação do ViaCEP.
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.yaml:snakeyaml'
+
     // Dependências do MapStruct
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"

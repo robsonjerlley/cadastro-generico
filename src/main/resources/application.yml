@@ -1,7 +1,13 @@
 spring:
   data:
     mongo:
-      uri: mongodb://localhost:27017/cadastro_generico
+      uri: ${MONGO_URI:mongodb://localhost:27017/cadastro_generico}
+
+
+app:
+  clients:
+    viacep:
+      base-url: https://viacep.com.br/ws
 
 
   messages:

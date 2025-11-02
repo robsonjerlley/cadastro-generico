@@ -15,9 +15,10 @@ public class Address {
     @Id
     @EqualsAndHashCode.Include
     private String id;
-    private String cep;
+    private String zipCode;
     private String street;
     private String neighborhood;
+    private String complement;
     private String city;
     private String state;
 

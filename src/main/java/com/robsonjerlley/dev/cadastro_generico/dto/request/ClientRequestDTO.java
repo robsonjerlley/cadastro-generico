@@ -12,7 +12,6 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 @Getter
 @Setter
 @ToString

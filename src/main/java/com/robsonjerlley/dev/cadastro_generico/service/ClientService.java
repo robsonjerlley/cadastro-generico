@@ -7,9 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Optional;
 
 
 public interface ClientService {

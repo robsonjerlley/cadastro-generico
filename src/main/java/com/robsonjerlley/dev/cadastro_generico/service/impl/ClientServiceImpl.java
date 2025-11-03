@@ -91,7 +91,9 @@ public class ClientServiceImpl implements ClientService {
         clientMapper.updateEntityFromDto(clientRequest, clientFromDb);
 
         Client clientUpdate = clientRepository.save(clientFromDb);
+        System.out.println("ClienteResponseDTO recebido: " + clientRequest);
         return clientMapper.toResponseDTO(clientUpdate);
+
     }
 
     @Override

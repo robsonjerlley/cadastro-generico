@@ -1,40 +1,34 @@
-package com.robsonjerlley.dev.cadastro_generico.model;
+package com.robsonjerlley.dev.cadastro_generico.dto.request;
 
 import com.robsonjerlley.dev.cadastro_generico.model.enums.TypeTransaction;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 @Getter
 @Setter
 @ToString
-@Document(collection = "transacao")
-public class Transaction {
+public class TransactionRequestDTO {
 
-    @Id
-    private String id;
+
     private BigDecimal amount;
     private String description;
     private TypeTransaction type;
     private OffsetDateTime date;
-    private String clientId;
 
-    public Transaction() {
+    public TransactionRequestDTO() {
     }
 
-    public Transaction(String id, BigDecimal amount,
+    public TransactionRequestDTO( BigDecimal amount,
                        String description, TypeTransaction type,
-                       OffsetDateTime date,String clientId) {
-        this.id = id;
+                       OffsetDateTime date) {
+
         this.amount = amount;
         this.description = description;
         this.type = type;
         this.date = date;
-        this.clientId = clientId;
     }
 }

@@ -20,23 +20,23 @@ public class ClientRequestDTO {
 
 
 
-    @NotBlank(message = "{NotBlank}")
-    @Size(min = 3, max = 100, message = "{Size}")
+    //@NotBlank(message = "{NotBlank}")
+    //@Size(min = 3, max = 100, message = "{Size}")
     private String name;
-    @NotBlank(message = "{NotBlank}")
-    @CPF
+    //@NotBlank(message = "{NotBlank}")
+   // @CPF
     private String cpf;
-    @NotBlank()
-    @Size(min =7, max= 9, message = "O campo deve ser preenchido apenas com digitos" )
+   // @NotBlank()
+    //@Size(min =7, max= 9, message = "O campo deve ser preenchido apenas com digitos" )
     private String rg;
-    @NotNull()
-    @Past(message = "Data inválida")
+    //@NotNull()
+    //@Past(message = "Data inválida")
     private LocalDate dateBirth;
-    @NotNull(message = "${NotNull}")
-    @Valid
+    //@NotNull(message = "${NotNull}")
+   // @Valid
     private AddressRequestDTO address;
-    @NotNull(message = "${NotNull}")
-    @Valid
+   // @NotNull(message = "${NotNull}")
+   // @Valid
     private ContactRequestDTO contact;
 
     public ClientRequestDTO() {

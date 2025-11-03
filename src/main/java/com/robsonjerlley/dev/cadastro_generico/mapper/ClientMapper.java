@@ -8,10 +8,14 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = {AddressMapper.class, ContactMapper.class})
 public interface ClientMapper {
+
+    @Mapping(target = "parentTransactionId", ignore = true)
     @Mapping(target = "id", ignore = true)
     Client toEntity(ClientRequestDTO dto);
 
     ClientResponseDTO toResponseDTO(Client entity);
+
+    @Mapping(target = "parentTransactionId", ignore = true)
     @Mapping(target = "id", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromDto(ClientRequestDTO dto, @MappingTarget Client entity);

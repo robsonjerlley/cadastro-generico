@@ -8,19 +8,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 public class ContactResponseDTO {
-    private String tell;
-    private String secondTell;
+    private String number;
+    private String secondNumber;
     private String email;
 
 
     public ContactResponseDTO() {
     }
 
-    public ContactResponseDTO(String tell, String secondTell, String email) {
-        this.tell = tell;
-        this.secondTell = secondTell;
+    public ContactResponseDTO(String number, String secondNumber, String email) {
+        this.number = number;
+        this.secondNumber = secondNumber;
         this.email = email;
     }
 }

@@ -10,7 +10,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 public class AddressRequestDTO {
 
     @NotBlank(message = "${NotBalnk}")
@@ -21,6 +20,7 @@ public class AddressRequestDTO {
     private String street;
     @NotBlank(message = "O bairro é obrigatório.")
     private String neighborhood;
+
     private String complement;
     @NotBlank(message = "A cidade é obrigatória.")
     private String city;
@@ -30,7 +30,7 @@ public class AddressRequestDTO {
     public AddressRequestDTO() {
     }
 
-    public AddressRequestDTO(String zipCode, String street, String neighborhood,String complement,  String city, String state) {
+    public AddressRequestDTO(String zipCode, String street, String neighborhood, String complement, String city, String state) {
         this.zipCode = zipCode;
         this.street = street;
         this.neighborhood = neighborhood;

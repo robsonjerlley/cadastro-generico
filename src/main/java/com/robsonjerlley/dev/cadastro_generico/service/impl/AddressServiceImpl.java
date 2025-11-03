@@ -5,7 +5,9 @@ import com.robsonjerlley.dev.cadastro_generico.gateway.dto.ViaCepGatewayResponse
 import com.robsonjerlley.dev.cadastro_generico.gateway.ViaCepGateway;
 import com.robsonjerlley.dev.cadastro_generico.mapper.AddressMapper;
 import com.robsonjerlley.dev.cadastro_generico.service.AddressService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
     private final ViaCepGateway viaCepGateway;

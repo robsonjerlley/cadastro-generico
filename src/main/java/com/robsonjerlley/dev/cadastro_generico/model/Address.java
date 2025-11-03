@@ -9,11 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Document(collection = "endereco")
 public class Address {
     @Id
-    @EqualsAndHashCode.Include
     private String id;
     private String zipCode;
     private String street;
@@ -23,5 +21,18 @@ public class Address {
     private String state;
 
     public Address() {
+    }
+
+    public Address(String id, String zipCode, String street,
+                   String neighborhood, String complement,
+                   String city, String state) {
+
+        this.id = id;
+        this.zipCode = zipCode;
+        this.street = street;
+        this.neighborhood = neighborhood;
+        this.complement = complement;
+        this.city = city;
+        this.state = state;
     }
 }

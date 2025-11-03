@@ -9,17 +9,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Document(collection = "contato")
 public class Contact {
     @Id
-    @EqualsAndHashCode.Include
     private String id;
-    private String tell;
-    private String secondTell;
+    private String number;
+    private String secondNumber;
     private String email;
 
 
     public Contact() {
+    }
+
+    public Contact(String id, String number, String secondNumber, String email) {
+        this.id = id;
+        this.number = number;
+        this.secondNumber = secondNumber;
+        this.email = email;
     }
 }

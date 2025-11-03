@@ -10,7 +10,7 @@ public interface ClientRepository extends MongoRepository <Client, String> {
 
    Optional<Client> findByCpf(String cpf);
 
-   Optional<Client> findByNameAndDateOfBirth(String name, LocalDate dateBirth);
+   Optional<Client> findByNameAndDateBirth(String name, LocalDate dateBirth);
 
 
 }

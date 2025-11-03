@@ -2,6 +2,7 @@ package com.robsonjerlley.dev.cadastro_generico.mapper;
 
 
 import com.robsonjerlley.dev.cadastro_generico.dto.request.TransactionRequestDTO;
+import com.robsonjerlley.dev.cadastro_generico.dto.response.TransactionResponseDTO;
 import com.robsonjerlley.dev.cadastro_generico.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,6 +16,8 @@ public interface TransactionMapper {
             @Mapping(target = "clientId", ignore = true)
     })
     Transaction toEntity(TransactionRequestDTO dto);
+
+    TransactionResponseDTO toResponseDTO(Transaction entity);
 
 
 }

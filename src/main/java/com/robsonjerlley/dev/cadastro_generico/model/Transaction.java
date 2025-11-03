@@ -1,7 +1,6 @@
 package com.robsonjerlley.dev.cadastro_generico.model;
 
 import com.robsonjerlley.dev.cadastro_generico.model.enums.TypeTransaction;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -21,7 +21,7 @@ public class Transaction {
     private BigDecimal amount;
     private String description;
     private TypeTransaction type;
-    private OffsetDateTime date;
+    private OffsetDateTime transactionDate;
     private String clientId;
 
     public Transaction() {
@@ -29,12 +29,12 @@ public class Transaction {
 
     public Transaction(String id, BigDecimal amount,
                        String description, TypeTransaction type,
-                       OffsetDateTime date,String clientId) {
+                       OffsetDateTime transactionDate, String clientId) {
         this.id = id;
         this.amount = amount;
         this.description = description;
         this.type = type;
-        this.date = date;
+        this.transactionDate = transactionDate;
         this.clientId = clientId;
     }
 }

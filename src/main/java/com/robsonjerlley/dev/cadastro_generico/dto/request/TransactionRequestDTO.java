@@ -5,30 +5,28 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+
 @Getter
 @Setter
 @ToString
 public class TransactionRequestDTO {
 
-
     private BigDecimal amount;
     private String description;
     private TypeTransaction type;
-    private OffsetDateTime date;
+    private OffsetDateTime transactionDate; // Renomeado de 'date' para 'transactionDate'
 
     public TransactionRequestDTO() {
     }
 
-    public TransactionRequestDTO( BigDecimal amount,
-                       String description, TypeTransaction type,
-                       OffsetDateTime date) {
-
+    public TransactionRequestDTO(BigDecimal amount,
+                               String description, TypeTransaction type,
+                               OffsetDateTime transactionDate) { // Parâmetro do construtor atualizado
         this.amount = amount;
         this.description = description;
         this.type = type;
-        this.date = date;
+        this.transactionDate = transactionDate; // Campo atualizado
     }
 }

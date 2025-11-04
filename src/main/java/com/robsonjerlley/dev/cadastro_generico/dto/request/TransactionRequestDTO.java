@@ -1,32 +1,33 @@
 package com.robsonjerlley.dev.cadastro_generico.dto.request;
 
 import com.robsonjerlley.dev.cadastro_generico.model.enums.TypeTransaction;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
 @Getter
 @Setter
 @ToString
 public class TransactionRequestDTO {
 
+    @NotBlank(message = "${NotBlank}")
     private BigDecimal amount;
     private String description;
+    @NotBlank(message = "${NotBlank}")
     private TypeTransaction type;
-    private OffsetDateTime transactionDate; // Renomeado de 'date' para 'transactionDate'
+
 
     public TransactionRequestDTO() {
     }
 
     public TransactionRequestDTO(BigDecimal amount,
-                               String description, TypeTransaction type,
-                               OffsetDateTime transactionDate) { // Parâmetro do construtor atualizado
+                               String description, TypeTransaction type) {
         this.amount = amount;
         this.description = description;
         this.type = type;
-        this.transactionDate = transactionDate; // Campo atualizado
+
     }
 }

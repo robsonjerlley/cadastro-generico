@@ -17,18 +17,18 @@ public class TransactionResponseDTO {
     private BigDecimal amount;
     private String description;
     private TypeTransaction type;
-    private OffsetDateTime date;
+    private OffsetDateTime transactionDate;
 
     public TransactionResponseDTO() {
     }
 
     public TransactionResponseDTO(String id, BigDecimal amount,
                                   String description, TypeTransaction type,
-                                  OffsetDateTime date) {
+                                  OffsetDateTime transactionDate) {
         this.id = id;
         this.amount = amount;
         this.description = description;
         this.type = type;
-        this.date = date;
+        this.transactionDate = transactionDate;
     }
 }

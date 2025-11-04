@@ -10,6 +10,7 @@ import com.robsonjerlley.dev.cadastro_generico.repository.TransactionRepository;
 import com.robsonjerlley.dev.cadastro_generico.service.TransactionService;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -37,6 +38,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
         Transaction transaction = mapper.toEntity(requestDTO);
         transaction.setClientId(clientId);
+        transaction.setTransactionDate(OffsetDateTime.now());
         Transaction salvedTransaction = transactionRepository.save(transaction);
 
         return mapper.toResponseDTO(salvedTransaction);

@@ -13,10 +13,12 @@ public interface TransactionMapper {
 
     @Mappings({
             @Mapping(target = "id", ignore = true),
-            @Mapping(target = "clientId", ignore = true)
+            @Mapping(target = "clientId", ignore = true),
+            @Mapping(target = "transactionDate", ignore = true)
     })
     Transaction toEntity(TransactionRequestDTO dto);
 
+    @Mapping(target = "transactionDate", ignore = true)
     TransactionResponseDTO toResponseDTO(Transaction entity);
 
 

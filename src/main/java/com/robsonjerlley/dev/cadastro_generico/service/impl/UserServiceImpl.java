@@ -2,6 +2,7 @@ package com.robsonjerlley.dev.cadastro_generico.service.impl;
 
 import com.robsonjerlley.dev.cadastro_generico.dto.request.UserRequestDTO;
 import com.robsonjerlley.dev.cadastro_generico.dto.response.UserResponseDTO;
+import com.robsonjerlley.dev.cadastro_generico.exceptions.ResourceNotFoundException;
 import com.robsonjerlley.dev.cadastro_generico.mapper.UserMapper;
 import com.robsonjerlley.dev.cadastro_generico.model.User;
 import com.robsonjerlley.dev.cadastro_generico.model.enums.TypeUser;
@@ -12,10 +13,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -57,11 +61,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserResponseDTO findByEmail(String email) {
-        return null;
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        User userFromDb = userOptional.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com o e-mail" + email));
+        return mapper.toResponseDTO(userFromDb);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) {
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o e-mail" + email));
     }
 }

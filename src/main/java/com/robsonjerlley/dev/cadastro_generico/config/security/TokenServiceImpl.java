@@ -3,10 +3,12 @@ package com.robsonjerlley.dev.cadastro_generico.config.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.robsonjerlley.dev.cadastro_generico.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -26,7 +28,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generateToken(User user) {
         try {
-            // O método estático HMAC256 pertence à classe Algorithm
+
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT.create()
@@ -41,7 +43,16 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String validateToken(String token) {
-        return "";
+       try{
+           Algorithm algorithm = Algorithm.HMAC256(secret.getBytes(StandardCharsets.UTF_8));
+           return JWT.require(algorithm)
+                   .withIssuer("api-cadastro-generico")
+                   .build()
+                   .verify(token)
+                   .getSubject();
+       }catch (JWTVerificationException exception) {
+           return "";
+       }
     }
 
     private Instant genExpirationDate() {

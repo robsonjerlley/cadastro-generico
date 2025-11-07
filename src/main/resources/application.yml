@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://root:root@localhost:27017/cadastrodb?authSource=admin
+      uri: mongodb://localhost:27017/cadastrodb?authSource=admin
     web:
       pageable:
         default-page-size: 20

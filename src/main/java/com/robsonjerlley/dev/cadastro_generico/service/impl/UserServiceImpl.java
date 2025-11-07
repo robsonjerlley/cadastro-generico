@@ -7,7 +7,6 @@ import com.robsonjerlley.dev.cadastro_generico.mapper.UserMapper;
 import com.robsonjerlley.dev.cadastro_generico.model.User;
 import com.robsonjerlley.dev.cadastro_generico.model.enums.TypeUser;
 import com.robsonjerlley.dev.cadastro_generico.repository.UserRepository;
-import com.robsonjerlley.dev.cadastro_generico.service.UserDetailsService;
 import com.robsonjerlley.dev.cadastro_generico.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -66,10 +65,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return mapper.toResponseDTO(userFromDb);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o e-mail" + email));
-    }
 }

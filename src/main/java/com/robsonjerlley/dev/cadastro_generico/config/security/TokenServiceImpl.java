@@ -15,10 +15,12 @@ import java.time.ZoneOffset;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    @Value("${api.security.token.secret}")
-    private String secret;
 
+    private final String secret;
 
+    public TokenServiceImpl(@Value("${api.security.token.secret}")String secret) {
+        this.secret = secret;
+    }
 
 
     @Override

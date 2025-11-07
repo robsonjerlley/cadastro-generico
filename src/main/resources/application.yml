@@ -14,3 +14,9 @@ app:
   messages:
     basename: messages
     encoding: UTF-8
+
+
+api:
+  security:
+    token:
+      secret: "security-aip-token-secret-name-generic-registration"

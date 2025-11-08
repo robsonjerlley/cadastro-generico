@@ -16,8 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -59,7 +58,19 @@ public class UserServiceImplTest {
 
     }
 
+    @Test
+    @DisplayName("Deve lançar uma exceção ao tentar criar um usuário com um e-mail já resgitrado.")
+    void creatUser_WithExistingEmail_ShouldThrowException() {
+        UserRequestDTO requestDTO = new UserRequestDTO();
+        requestDTO.setEmail("existeEmail@test.com");
+        requestDTO.setPassword("exist123");
 
+        when(userRepository.findByEmail("existeEmail@test.com")).thenReturn(Optional.of(new User()));
+        assertThrows(IllegalArgumentException.class, () ->
+                userService.create(requestDTO));
+
+        verify(userRepository, never()).save(any(User.class));
+    }
 
 
 

@@ -42,7 +42,7 @@ public class User implements UserDetails {
         if(this.typeUser == null) {
             return Collections.emptyList();
         }
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + this.typeUser.name()));
+        return Collections.singleton(new SimpleGrantedAuthority(this.typeUser.name()));
     }
 
 

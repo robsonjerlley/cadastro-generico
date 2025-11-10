@@ -13,17 +13,25 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
+
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Collections;
+
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 // ---------------------------
 
 @WebMvcTest(UserController.class)
@@ -68,8 +76,19 @@ class UserControllerTest {
 
     @Test
     @DisplayName("Deve retornar 403 ao tentar listar usuários sem autentificação")
-    void findAll_WithAuthentication_ShoudReturn403() throws Exception {
+    void findAll_WithAuthentication_ShouldReturn403() throws Exception {
 
         mockMvc.perform(get("/users")).andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("Deve retornar 200 OK, e uma página de usuários ao tentar listar com autentificação")
+    @WithMockUser
+    void findAll_WithAuthentication_ShouldReturn200AndPageOfUsers() throws Exception {
+        Page<UserResponseDTO> emptyPage = new PageImpl<>(Collections.emptyList());
+        when(userService.findAll(any(Pageable.class))).thenReturn(emptyPage);
+
+        mockMvc.perform(get("/users")).andExpect(status().isOk());
+        verify(userService, times(1)).findAll(any(Pageable.class));
     }
 }

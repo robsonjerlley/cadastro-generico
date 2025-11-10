@@ -7,24 +7,11 @@ O projeto serve como um exemplo prático de implementação de um CRUD (Create, 
 O projeto segue uma arquitetura em camadas padrão do Spring Boot, facilitando a manutenção e a separação de responsabilidades. O fluxo de uma requisição HTTP é o seguinte:
 
 
-graph TD
-    subgraph "Cliente (Usuário/Frontend)"
-        A[Cliente] -- Requisição HTTP (JSON) --> B[API Endpoint]
-    end
+## 🧭 Diagrama da Arquitetura
 
-    subgraph "Backend (Aplicação Spring Boot)"
-        B -- Chama o método --> C(Camada de Controller)
-        C -- Valida e chama --> D(Camada de Service)
-        D -- Solicita dados --> E(Camada de Repository)
-        E -- Executa CRUD --> F[(Banco de Dados)]
-        F -- Retorna dados --> E
-        E -- Retorna Entidade --> D
-        D -- Retorna DTO/Entidade --> C
-        C -- Resposta HTTP (JSON) --> B
-    end
+Este diagrama representa o fluxo de requisição da API RESTful utilizando Spring Boot.
 
-    B -- Retorna para --> A
-
+![Diagrama da Arquitetura](diagrama/arquitetura.png)
 
 
 ✍️ Descrição das Camadas

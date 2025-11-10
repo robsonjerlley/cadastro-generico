@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,5 +64,12 @@ class UserControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value("123"))
                 .andExpect(jsonPath("$.email").value("teste@test.com"));
+    }
+
+    @Test
+    @DisplayName("Deve retornar 403 ao tentar listar usuários sem autentificação")
+    void findAll_WithAuthentication_ShoudReturn403() throws Exception {
+
+        mockMvc.perform(get("/users")).andExpect(status().isForbidden());
     }
 }
